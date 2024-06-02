@@ -34,7 +34,7 @@ Entities:
 - main: main branch
 - release/*: release branch
 - development: development branch
-- feature/*: feature branches
+- feat/*: feature branches
 
 Fix branches:
 - fix/*: fix branches
