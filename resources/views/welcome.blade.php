@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Tailwind</title>
-    <!-- Link to Tailwind CSS via CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <nav class="fixed top-0 right-0 p-4 bg-white shadow-md rounded-bl-md">
     <a href="{{ route('login') }}" class="mr-4 text-sm font-semibold text-gray-900 hover:text-indigo-600">Log in</a>
