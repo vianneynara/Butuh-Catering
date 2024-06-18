@@ -25,6 +25,9 @@ require __DIR__.'/auth.php';
 
 route::get('admin/dashboard',[HomeController::class,'index'])->middleware(['auth','admin']);
 Route::get('/register', [RegisterController::class, 'create'])->name('register');
+route::get('/cart', function() {
+    return view('cart');
+});
 
 
 
