@@ -27,54 +27,16 @@
         <x-product-section-title>Jenis Hidangan</x-product-section-title>
 
         <div class="w-full ml-4 flex flex-wrap justify-between scrollbar-hide gap-4">
-            <div class="relative flex flex-col items-center border border-[#D1A146] rounded-[50%] overflow-hidden m-0">
-                <img src="https://placeholder.com/100x100" alt="" class="rounded-[50%]">
-                <div class="w-[100px] flex justify-center z-1 absolute bg-white bottom-0 pb-4">
-                    <p class="text-[11px] font-bold text-[#D1A146]">Berkuah</p>
-                </div>
-            </div>
-            <div class="relative flex flex-col items-center border border-[#D1A146] rounded-[50%] overflow-hidden">
-                <img src="https://placeholder.com/100x100" alt="" class="rounded-[50%]">
-                <div class="w-[100px] flex justify-center z-1 absolute bg-white bottom-0 pb-4">
-                    <p class="text-[11px] font-bold text-[#D1A146]">Berkuah</p>
-                </div>
-            </div>
-            <div class="relative flex flex-col items-center border border-[#D1A146] rounded-[50%] overflow-hidden">
-                <img src="https://placeholder.com/100x100" alt="" class="rounded-[50%]">
-                <div class="w-[100px] flex justify-center z-1 absolute bg-white bottom-0 pb-4">
-                    <p class="text-[11px] font-bold text-[#D1A146]">Berkuah</p>
-                </div>
-            </div>
-            <div class="relative flex flex-col items-center border border-[#D1A146] rounded-[50%] overflow-hidden">
-                <img src="https://placeholder.com/100x100" alt="" class="rounded-[50%]">
-                <div class="w-[100px] flex justify-center z-1 absolute bg-white bottom-0 pb-4">
-                    <p class="text-[11px] font-bold text-[#D1A146]">Berkuah</p>
-                </div>
-            </div>
-            <div class="relative flex flex-col items-center border border-[#D1A146] rounded-[50%] overflow-hidden">
-                <img src="https://placeholder.com/100x100" alt="" class="rounded-[50%]">
-                <div class="w-[100px] flex justify-center z-1 absolute bg-white bottom-0 pb-4">
-                    <p class="text-[11px] font-bold text-[#D1A146]">Berkuah</p>
-                </div>
-            </div>
-            <div class="relative flex flex-col items-center border border-[#D1A146] rounded-[50%] overflow-hidden">
-                <img src="https://placeholder.com/100x100" alt="" class="rounded-[50%]">
-                <div class="w-[100px] flex justify-center z-1 absolute bg-white bottom-0 pb-4">
-                    <p class="text-[11px] font-bold text-[#D1A146]">Berkuah</p>
-                </div>
-            </div>
-            <div class="relative flex flex-col items-center border border-[#D1A146] rounded-[50%] overflow-hidden">
-                <img src="https://placeholder.com/100x100" alt="" class="rounded-[50%]">
-                <div class="w-[100px] flex justify-center z-1 absolute bg-white bottom-0 pb-4">
-                    <p class="text-[11px] font-bold text-[#D1A146]">Berkuah</p>
-                </div>
-            </div>
-            <div class="relative flex flex-col items-center border border-[#D1A146] rounded-[50%] overflow-hidden">
-                <img src="https://placeholder.com/100x100" alt="" class="rounded-[50%]">
-                <div class="w-[100px] flex justify-center z-1 absolute bg-white bottom-0 pb-4">
-                    <p class="text-[11px] font-bold text-[#D1A146]">Berkuah</p>
-                </div>
-            </div>
+            <x-product-circle>Berkuah</x-product-circle>
+            <x-product-circle>Berkuah</x-product-circle>
+            <x-product-circle>Berkuah</x-product-circle>
+            <x-product-circle>Berkuah</x-product-circle>
+            <x-product-circle>Berkuah</x-product-circle>
+            <x-product-circle>Berkuah</x-product-circle>
+            <x-product-circle>Berkuah</x-product-circle>
+            <x-product-circle>Berkuah</x-product-circle>
+            <x-product-circle>Berkuah</x-product-circle>
+            <x-product-circle>Berkuah</x-product-circle>
         </div>
         <h2 class="w-[40%] bg-[#D1A146] font-bold tracking-tight text-white my-6 px-4 py-1 rounded-r-md">Produk
             Terlaris </h2>
