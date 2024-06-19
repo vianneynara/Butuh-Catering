@@ -38,75 +38,14 @@
             <x-product-circle>Berkuah</x-product-circle>
             <x-product-circle>Berkuah</x-product-circle>
         </div>
-        <x-product-section-title>Produk
-            Terlaris</x-product-section-title>
+        <x-product-section-title>Produk Terlaris</x-product-section-title>
         <div class="flex overflow-x-auto scrollbar-hide w-full">
-            <div class="min-w-[140px] h-[190px] ml-4">
-                <img src="https://placeholder.com/140x140" alt="" class="rounded-lg">
-                <div class="ml-2">
-                    <p class="text-[11px]">Rendang Gokil</p>
-                    <p class="text-[13px] m-0">Rp 10.000</p>
-                    <div class="flex gap-1.5 m-0">
-                        <p class="text-[8px] font-bold">Paingan, Yogyakarta</p>
-                        <p class="text-[8px] ">31 Terjual</p>
-                    </div>
-                </div>
-            </div>
-            <div class="min-w-[140px] h-[190px] ml-4">
-                <img src="https://placeholder.com/140x140" alt="" class="rounded-lg">
-                <div class="ml-2">
-                    <p class="text-[11px]">Rendang Gokil</p>
-                    <p class="text-[13px] m-0">Rp 10.000</p>
-                    <div class="flex gap-1.5 m-0">
-                        <p class="text-[8px] font-bold">Paingan, Yogyakarta</p>
-                        <p class="text-[8px] ">31 Terjual</p>
-                    </div>
-                </div>
-            </div>
-            <div class="min-w-[140px] h-[190px] ml-4">
-                <img src="https://placeholder.com/140x140" alt="" class="rounded-lg">
-                <div class="ml-2">
-                    <p class="text-[11px]">Rendang Gokil</p>
-                    <p class="text-[13px] m-0">Rp 10.000</p>
-                    <div class="flex gap-1.5 m-0">
-                        <p class="text-[8px] font-bold">Paingan, Yogyakarta</p>
-                        <p class="text-[8px] ">31 Terjual</p>
-                    </div>
-                </div>
-            </div>
-            <div class="min-w-[140px] h-[190px] ml-4">
-                <img src="https://placeholder.com/140x140" alt="" class="rounded-lg">
-                <div class="ml-2">
-                    <p class="text-[11px]">Rendang Gokil</p>
-                    <p class="text-[13px] m-0">Rp 10.000</p>
-                    <div class="flex gap-1.5 m-0">
-                        <p class="text-[8px] font-bold">Paingan, Yogyakarta</p>
-                        <p class="text-[8px] ">31 Terjual</p>
-                    </div>
-                </div>
-            </div>
-            <div class="min-w-[140px] h-[190px] ml-4">
-                <img src="https://placeholder.com/140x140" alt="" class="rounded-lg">
-                <div class="ml-2">
-                    <p class="text-[11px]">Rendang Gokil</p>
-                    <p class="text-[13px] m-0">Rp 10.000</p>
-                    <div class="flex gap-1.5 m-0">
-                        <p class="text-[8px] font-bold">Paingan, Yogyakarta</p>
-                        <p class="text-[8px] ">31 Terjual</p>
-                    </div>
-                </div>
-            </div>
-            <div class="min-w-[140px] h-[190px] ml-4">
-                <img src="https://placeholder.com/140x140" alt="" class="rounded-lg">
-                <div class="ml-2">
-                    <p class="text-[11px]">Rendang Gokil</p>
-                    <p class="text-[13px] m-0">Rp 10.000</p>
-                    <div class="flex gap-1.5 m-0">
-                        <p class="text-[8px] font-bold">Paingan, Yogyakarta</p>
-                        <p class="text-[8px] ">31 Terjual</p>
-                    </div>
-                </div>
-            </div>
+            <x-product-square title="Rendang Gokil" price="Rp 10.000" addr="Paingan, Yogyakarta" :itemSold="31"></x-product-square>
+            <x-product-square title="Rendang Gokil" price="Rp 10.000" addr="Paingan, Yogyakarta" :itemSold="31"></x-product-square>
+            <x-product-square title="Rendang Gokil" price="Rp 10.000" addr="Paingan, Yogyakarta" :itemSold="31"></x-product-square>
+            <x-product-square title="Rendang Gokil" price="Rp 10.000" addr="Paingan, Yogyakarta" :itemSold="31"></x-product-square>
+            <x-product-square title="Rendang Gokil" price="Rp 10.000" addr="Paingan, Yogyakarta" :itemSold="31"></x-product-square>
+            <x-product-square title="Rendang Gokil" price="Rp 10.000" addr="Paingan, Yogyakarta" :itemSold="31"></x-product-square>
         </div>
         <h2 class="w-[40%] bg-[#D1A146] font-bold tracking-tight text-white my-6 px-4 py-1 rounded-r-md">Produk di
             Sekitarmu
