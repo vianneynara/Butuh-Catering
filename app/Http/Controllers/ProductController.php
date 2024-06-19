@@ -54,7 +54,7 @@ class ProductController extends Controller
             'image_url'     => ['required', 'url'],
         ]);
 
-        $product = Product::create(['shop_id' => $shop->shop_id] + $validated);
+        $product = Product::create(['shop_id' => $shop->getKey()] + $validated);
 
         return response()->json([
             'message' => 'Product created successfully',
