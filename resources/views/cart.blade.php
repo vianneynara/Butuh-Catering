@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="id" class="w-full m-auto border border-solid">
+<html lang="id" class="w-full m-auto">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -8,24 +8,15 @@
     <title>Cart</title>
     @vite('resources/css/app.css')
 </head>
-<body >
-<div class="max-w-lg flex flex-col items-center border border-solid m-auto">
-    <div class="w-full flex border border-solid gap-5">
+<body>
+<div class="max-w-lg flex flex-col items-center m-auto border">
+    <div class="w-full h-[70px] flex items-center gap-5">
         <img src="../../public/icons/arrow-back.svg">
         <p>Keranjang Belanja</p>
-    </div
-    >
+    </div>
 
     <div class="w-full">
-        <div class="">
-            <details class="dropdown">
-                <summary class="m-1 btn w-96">open or close</summary>
-                <ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
-                    <li><a>Item 1</a></li>
-                    <li><a>Item 2</a></li>
-                </ul>
-            </details>
-        </div>
+        <x-cart-link :index="1"></x-cart-link>
     </div>
 </div>
 </body>
