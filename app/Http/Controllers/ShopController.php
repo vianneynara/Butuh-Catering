@@ -90,7 +90,7 @@ class ShopController extends Controller
      */
     public function edit(Shop $shop)
     {
-        $this->checkOwnership($shop);
+        $this->checkShopOwnership($shop);
 
         return view('shop.edit', ['shop' => $shop]);
     }
@@ -100,7 +100,7 @@ class ShopController extends Controller
      */
     public function update(Request $request, Shop $shop)
     {
-        $this->checkOwnership($shop);
+        $this->checkShopOwnership($shop);
 
         $validated = $request->validate([
             'name' => 'required|string|max:50',
@@ -122,7 +122,7 @@ class ShopController extends Controller
      */
     public function destroy(Shop $shop)
     {
-        $this->checkOwnership($shop);
+        $this->checkShopOwnership($shop);
 
         $shop->delete();
 
@@ -136,8 +136,14 @@ class ShopController extends Controller
     /**
      * Check for shop ownership.
      */
-    private function checkOwnership(Shop $shop) {
+    static function checkShopOwnership(Shop $shop) {
         $user = Auth::user();
+
+        if ($user === null) {
+            return response()->json([
+                'message' => 'Authentication required',
+            ], 403);
+        }
 
         if ($shop->user_id !== $user->getAuthIdentifier()) {
             return response()->json([
