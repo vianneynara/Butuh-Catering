@@ -17,22 +17,11 @@
     <div class="mx-auto max-w-2xl pr-4 py-3.5 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8 mb-[100px]">
         <!-- Tautan Jawa, Sumatera, Kalimantan, Sulawesi, Bali -->
         <div class="ml-4 snap-x flex gap-3 overflow-x-auto scrollbar-hide">
-            <a href="#" class="flex justify-center snap-center min-w-[110px] text-gray-700 border border-yellow-800
-            rounded-md">
-                <p>Jawa</p>
-            </a><a href="#" class="flex justify-center snap-center min-w-[110px] text-gray-700 border border-yellow-800
-            rounded-md">
-                <p>Jawa</p>
-            </a><a href="#" class="flex justify-center snap-center min-w-[110px] text-gray-700 border border-yellow-800
-            rounded-md">
-                <p>Jawa</p>
-            </a><a href="#" class="flex justify-center snap-center min-w-[110px] text-gray-700 border border-yellow-800
-            rounded-md">
-                <p>Jawa</p>
-            </a><a href="#" class="flex justify-center snap-center min-w-[110px] text-gray-700 border border-yellow-800
-            rounded-md">
-                <p>Jawa</p>
-            </a>
+            <x-category>Jawa</x-category>
+            <x-category>Sumatra</x-category>
+            <x-category>Kalimantan</x-category>
+            <x-category>Sulawesi</x-category>
+            <x-category>Bali</x-category>
         </div>
         <!-- Judul dengan latar belakang oranye -->
         <h2 class="w-[40%] bg-[#D1A146] my-6 font-bold tracking-tight text-white px-4 py-1 rounded-r-md">Jenis
