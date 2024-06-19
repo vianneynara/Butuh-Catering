@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartItemController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
@@ -7,7 +8,6 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\ProductController;
-use Illuminate\Support\Facades\Auth;
 
 Route::get('/',function() {
     return view('welcome');
@@ -60,6 +60,18 @@ Route::middleware('auth')->group(function () {
 Route::get('/shops/{shop}/products/{product}', [ProductController::class, 'show'])->name('product.show');
 Route::get('/shops/{shop}/products', [ProductController::class, 'shopProducts'])->name('product.shopProducts');
 Route::get('/products', [ProductController::class, 'index'])->name('product.index');
+
+// Cart Item routes
+
+Route::middleware('auth')->group(function () {
+    Route::get('/cart', [CartItemController::class, 'index'])->name('cartItem.index');
+    Route::get('/cart/form/{productId}', [CartItemController::class, 'create'])->name('cartItem.create');
+    Route::post('/cart/{productId}/{quantity}', [CartItemController::class, 'store'])->name('cartItem.store');
+    Route::delete('/cart/{cartItem}', [CartItemController::class, 'destroy'])->name('cartItem.destroy');
+
+    Route::patch('/cart/{cartItem}/{quantity}', [CartItemController::class, 'changeQuantity'])->name('cartItem.changeQuantity');
+    Route::get('/cart/{cartItem)/quantity', [CartItemController::class, 'getQuantity'])->name('cartItem.getQuantity');
+});
 
 require __DIR__.'/auth.php';
 
