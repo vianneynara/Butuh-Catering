@@ -103,10 +103,10 @@ class ShopController extends Controller
         $this->checkShopOwnership($shop);
 
         $validated = $request->validate([
-            'name' => 'required|string|max:50',
-            'address' => 'required|string|max:100',
-            'status' => 'required|string|in:open,closed',
-            'schedules_data' => 'nullable|json',
+            'name' => ['required', 'string', 'max:50'],
+            'address' => ['required', 'string', 'max:100'],
+            'status' => ['required', 'string', 'in:open,closed'],
+            'schedules_data' => ['nullable', 'json'],
         ]);
 
         $shop->update($validated);
@@ -136,7 +136,8 @@ class ShopController extends Controller
     /**
      * Check for shop ownership.
      */
-    static function checkShopOwnership(Shop $shop) {
+    static function checkShopOwnership(Shop $shop)
+    {
         $user = Auth::user();
 
         if ($user === null) {

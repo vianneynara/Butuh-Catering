@@ -46,12 +46,12 @@ class ProductController extends Controller
         ShopController::checkShopOwnership($shop);
 
         $validated = $request->validate([
-            'name' => 'required|string|max:50',
-            'description' => 'required|string|max:255',
-            'min_order' => 'required|integer|digits_between:1,3',
-            'max_order' => 'required|integer|digits_between:1,3',
-            'price' => 'required|numeric',
-            'image_url' => 'required|url',
+            'name'          => ['required', 'string', 'max:50'],
+            'description'   => ['required', 'string', 'max:255'],
+            'min_order'     => ['required', 'integer', 'digits_between:1,3'],
+            'max_order'     => ['required', 'integer', 'digits_between:1,3'],
+            'price'         => ['required', 'numeric'],
+            'image_url'     => ['required', 'url'],
         ]);
 
         $product = Product::create([
@@ -96,22 +96,15 @@ class ProductController extends Controller
         ShopController::checkShopOwnership($shop);
 
         $validated = $request->validate([
-            'name' => 'required|string|max:50',
-            'description' => 'required|string|max:255',
-            'min_order' => 'required|integer|digits_between:1,3',
-            'max_order' => 'required|integer|digits_between:1,3',
-            'price' => 'required|numeric',
-            'image_url' => 'required|url',
+            'name'          => ['required', 'string', 'max:50'],
+            'description'   => ['required', 'string', 'max:255'],
+            'min_order'     => ['required', 'integer', 'digits_between:1,3'],
+            'max_order'     => ['required', 'integer', 'digits_between:1,3'],
+            'price'         => ['required', 'numeric'],
+            'image_url'     => ['required', 'url'],
         ]);
 
-        $product->update([
-            'name' => $validated['name'],
-            'description' => $validated['description'],
-            'min_order' => $validated['min_order'],
-            'max_order' => $validated['max_order'],
-            'price' => $validated['price'],
-            'image_url' => $validated['image_url'],
-        ]);
+        $product->update($validated);
 
         return response()->json([
             'message' => 'Product updated successfully',
