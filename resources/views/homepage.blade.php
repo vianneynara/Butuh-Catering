@@ -38,8 +38,8 @@
             <x-product-circle>Berkuah</x-product-circle>
             <x-product-circle>Berkuah</x-product-circle>
         </div>
-        <h2 class="w-[40%] bg-[#D1A146] font-bold tracking-tight text-white my-6 px-4 py-1 rounded-r-md">Produk
-            Terlaris </h2>
+        <x-product-section-title>Produk
+            Terlaris</x-product-section-title>
         <div class="flex overflow-x-auto scrollbar-hide w-full">
             <div class="min-w-[140px] h-[190px] ml-4">
                 <img src="https://placeholder.com/140x140" alt="" class="rounded-lg">
