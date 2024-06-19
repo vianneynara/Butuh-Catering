@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegisterController;
@@ -21,10 +22,19 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Shop routes
+
+Route::middleware('auth')->group(function () {
+    Route::get('/shops/create', [ShopController::class, 'create'])->name('shop.create');
+    Route::post('/shops', [ShopController::class, 'store'])->name('shop.store');
+    Route::get('/shops/{shopId}/edit', [ShopController::class, 'edit'])->name('shop.edit');
+    Route::patch('/shops/{shopId}', [ShopController::class, 'update'])->name('shop.update');
+    Route::delete('/shops/{shopId}', [ShopController::class, 'destroy'])->name('shop.destroy');
+});
+
+Route::get('/shops/{shopId}', [ShopController::class, 'show'])->name('shop.show');
+
 require __DIR__.'/auth.php';
 
 route::get('admin/dashboard',[HomeController::class,'index'])->middleware(['auth','admin']);
 Route::get('/register', [RegisterController::class, 'create'])->name('register');
-
-
-
