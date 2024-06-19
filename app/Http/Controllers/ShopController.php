@@ -131,6 +131,102 @@ class ShopController extends Controller
         ], 200);
     }
 
+    // Resource Finders
+
+    /**
+     * Get the shop by the given ID.
+     */
+    public function getShopById(int $shopId): Shop
+    {
+        return Shop::findOrFail($shopId);
+    }
+
+    /**
+     * Get shops that contains the given keyword of name.
+     */
+    public function getShopsByName(string $keyword): array
+    {
+        return Shop::where('name', 'like', "%$keyword%")->get();
+    }
+
+    // PATCH requests
+
+    /**
+     * Change the name of the shop.
+     */
+    public function changeName(Request $request, Shop $shop)
+    {
+        $this->checkShopOwnership($shop);
+
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:50'],
+        ]);
+
+        $shop->update($validated);
+
+        return response()->json([
+            'message' => 'Shop name updated successfully',
+            'shop' => $shop,
+        ], 200);
+    }
+
+    /**
+     * Change the status of the shop.
+     */
+    public function changeStatus(Request $request, Shop $shop)
+    {
+        $this->checkShopOwnership($shop);
+
+        $validated = $request->validate([
+            'status' => ['required', 'string', 'in:open,closed'],
+        ]);
+
+        $shop->update($validated);
+
+        return response()->json([
+            'message' => 'Shop status updated successfully',
+            'shop' => $shop,
+        ], 200);
+    }
+
+    /**
+     * Change the schedules of the shop.
+     */
+    public function changeSchedules(Request $request, Shop $shop)
+    {
+        $this->checkShopOwnership($shop);
+
+        $validated = $request->validate([
+            'schedules_data' => ['nullable', 'json'],
+        ]);
+
+        $shop->update($validated);
+
+        return response()->json([
+            'message' => 'Shop schedules updated successfully',
+            'shop' => $shop,
+        ], 200);
+    }
+
+    /**
+     * Change the address of the shop.
+     */
+    public function changeAddress(Request $request, Shop $shop)
+    {
+        $this->checkShopOwnership($shop);
+
+        $validated = $request->validate([
+            'address' => ['required', 'string', 'max:100'],
+        ]);
+
+        $shop->update($validated);
+
+        return response()->json([
+            'message' => 'Shop address updated successfully',
+            'shop' => $shop,
+        ], 200);
+    }
+
     // Helper methods
 
     /**
@@ -151,23 +247,5 @@ class ShopController extends Controller
                 'message' => 'Unauthorized',
             ], 401);
         }
-    }
-
-    // Resource Finders
-
-    /**
-     * Get the shop by the given ID.
-     */
-    public function getShopById(int $shopId): Shop
-    {
-        return Shop::findOrFail($shopId);
-    }
-
-    /**
-     * Get shops that contains the given keyword of name.
-     */
-    public function getShopsByName(string $keyword): array
-    {
-        return Shop::where('name', 'like', "%$keyword%")->get();
     }
 }

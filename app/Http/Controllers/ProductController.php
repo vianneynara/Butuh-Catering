@@ -54,15 +54,7 @@ class ProductController extends Controller
             'image_url'     => ['required', 'url'],
         ]);
 
-        $product = Product::create([
-            'shop_id' => $shop->shop_id,
-            'name' => $validated['name'],
-            'description' => $validated['description'],
-            'min_order' => $validated['min_order'],
-            'max_order' => $validated['max_order'],
-            'price' => $validated['price'],
-            'image_url' => $validated['image_url'],
-        ]);
+        $product = Product::create(['shop_id' => $shop->shop_id] + $validated);
 
         return response()->json([
             'message' => 'Product created successfully',
@@ -123,6 +115,105 @@ class ProductController extends Controller
 
         return response()->json([
             'message' => 'Product deleted successfully',
+        ], 200);
+    }
+
+    // PATCH requests
+
+    /**
+     * Change the name of the product.
+     */
+    public function changeName(Request $request, Shop $shop, Product $product)
+    {
+        ShopController::checkShopOwnership($shop);
+
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:50'],
+        ]);
+
+        $product->update($validated);
+
+        return response()->json([
+            'message' => 'Product name updated successfully',
+            'product' => $product,
+        ], 200);
+    }
+
+    /**
+     * Change the description of the product.
+     */
+    public function changeDescription(Request $request, Shop $shop, Product $product)
+    {
+        ShopController::checkShopOwnership($shop);
+
+        $validated = $request->validate([
+            'description' => ['required', 'string', 'max:255'],
+        ]);
+
+        $product->update($validated);
+
+        return response()->json([
+            'message' => 'Product description updated successfully',
+            'product' => $product,
+        ], 200);
+    }
+
+    /**
+     * Change the price of the product.
+     */
+    public function changePrice(Request $request, Shop $shop, Product $product)
+    {
+        ShopController::checkShopOwnership($shop);
+
+        $validated = $request->validate([
+            'price' => ['required', 'numeric'],
+        ]);
+
+        $product->update($validated);
+
+        return response()->json([
+            'message' => 'Product price updated successfully',
+            'product' => $product,
+        ], 200);
+    }
+
+    /**
+     * Change the min order of the product.
+     */
+    public function changeMinOrder(Request $request, Shop $shop, Product $product)
+    {
+        ShopController::checkShopOwnership($shop);
+
+        // min_order must be between 1 and 3 digits and not be above max_order
+        $validated = $request->validate([
+            'min_order' => ['required', 'integer', 'digits_between:1,3', 'lt:max_order'],
+        ]);
+
+        $product->update($validated);
+
+        return response()->json([
+            'message' => 'Product min order updated successfully',
+            'product' => $product,
+        ], 200);
+    }
+
+    /**
+     * Change the max order of the product.
+     */
+    public function changeMaxOrder(Request $request, Shop $shop, Product $product)
+    {
+        ShopController::checkShopOwnership($shop);
+
+        // max_order must be between 1 and 3 digits and not be below min_order
+        $validated = $request->validate([
+            'max_order' => ['required', 'integer', 'digits_between:1,3', 'gt:min_order'],
+        ]);
+
+        $product->update($validated);
+
+        return response()->json([
+            'message' => 'Product max order updated successfully',
+            'product' => $product,
         ], 200);
     }
 }
