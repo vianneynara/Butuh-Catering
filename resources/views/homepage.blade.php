@@ -24,8 +24,7 @@
             <x-category>Bali</x-category>
         </div>
         <!-- Judul dengan latar belakang oranye -->
-        <h2 class="w-[40%] bg-[#D1A146] my-6 font-bold tracking-tight text-white px-4 py-1 rounded-r-md">Jenis
-            Hidangan</h2>
+        <x-product-section-title>Jenis Hidangan</x-product-section-title>
 
         <div class="w-full ml-4 flex flex-wrap justify-between scrollbar-hide gap-4">
             <div class="relative flex flex-col items-center border border-[#D1A146] rounded-[50%] overflow-hidden m-0">
