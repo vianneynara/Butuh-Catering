@@ -22,24 +22,27 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        $request->validate([
-            'username' => 'required|string|max:32|unique:users',
-            'password' => 'required|string|min:6',
-            'first_name' => 'required|string|max:50',
-            'last_name' => 'nullable|string|max:50',
-            'email' => 'required|string|email|max:320|unique:users',
-            'phone_number' => 'nullable|string|max:16|unique:users',
-            'date_of_birth' => 'nullable|date',
+        $validated = $request->validate([
+            // 'first_name' => ['required', 'string', 'max:50'],
+            // 'last_name' => ['nullable', 'string', 'max:50'],
+            // 'username' => ['required', 'string', 'max:32', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:320', 'unique:users'],
+            'password' => ['required', 'string', 'min:6'],
+            // 'phone_number' => ['nullable', 'string', 'max:16', 'unique:users'],
+            // 'date_of_birth' => ['nullable', 'date'],
         ]);
 
+        // use regex to only extract a-z and numbers and replace spaces with _
+        $username = preg_replace('/[^a-z0-9]/', '', strtolower($validated['email']));
+
         $user = User::create([
-            'username' => $request->username,
-            'password' => Hash::make($request->password),
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'email' => $request->email,
-            'phone_number' => $request->phone_number,
-            'date_of_birth' => $request->date_of_birth,
+            'first_name' => '',
+            'last_name' => '',
+            'username' => $username,
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+            // 'phone_number' => $request->phone_number,
+            // 'date_of_birth' => $request->date_of_birth,
         ]);
 
         Auth::login($user);
@@ -49,12 +52,15 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'username' => 'required|string',
             'password' => 'required|string',
         ]);
 
-        $credentials = $request->only('username', 'password');
+        $credentials = [
+            'username' => $validated['username'],
+            'password' => $validated['password'],
+        ];
 
         if (Auth::attempt($credentials)) {
             return redirect()->route('homepage');

@@ -38,9 +38,9 @@
 
                 <!-- Email/Phone Input -->
                 <div class="relative w-full mb-6">
-                    <span class="absolute left-3 top-[-6px] bg-white px-1 font-['Roboto'] font-normal text-[10px] text-[#CDCDCD]">Email / No. Telpon</span>
+                    <span class="absolute left-3 top-[-6px] bg-white px-1 font-['Roboto'] font-normal text-[10px] text-[#CDCDCD]">Email</span>
                     <div class="rounded-[3px] border {{ $errors->has('email') ? 'border-red-500' : 'border-[#CDCDCD]' }} bg-white flex flex-row justify-between p-2 mt-4 w-full">
-                        <input class="outline-none flex-grow text-gray-700" type="email" placeholder="+62" name="email" id="email" required>
+                        <input class="outline-none flex-grow text-gray-700" type="email" placeholder="email@example.com" name="email" id="email" required>
                         <img class="w-5 h-4" src="../assets/vectors/vector_153_x2.svg" />
                     </div>
                     @if ($errors->has('email'))
