@@ -5,6 +5,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\ProductController;
+
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\ProductController;
@@ -58,4 +61,24 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 route::get('admin/dashboard',[HomeController::class,'index'])->middleware(['auth','admin']);
-Route::get('/register', [RegisterController::class, 'create'])->name('register');
+
+Route::middleware('auth')->group(function () {
+    Route::post('logout', [AuthController::class, 'logout'])
+        ->name('logout');
+});
+
+Route::middleware(['web'])->group(function () {
+    Route::get('/admin', [HomeController::class, 'indexAdmin'])->name('admin');
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::get('/homepage', [HomeController::class, 'homepage'])->name('homepage');
+    Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::get('/welcome', [HomeController::class, 'welcome'])->name('welcome');
+});
+
+Route::get('/search', [ProductController::class, 'search'])->name('search');
+Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
+
+
+
