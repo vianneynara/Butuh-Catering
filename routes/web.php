@@ -16,7 +16,7 @@ Route::get('/', function () {
 
 Route::get('/mt', function () {
     return view('./error/maintenance');
-});
+})->name('maintenance');
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
