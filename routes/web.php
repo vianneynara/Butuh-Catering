@@ -24,15 +24,6 @@ Route::middleware('auth')->group(function () {
 
 // Shop routes
 
-Route::middleware('auth')->group(function () {
-    Route::patch('/shops/{shop}/products/{product}/name', [ProductController::class, 'changeName'])->name('product.changeName');
-    Route::patch('/shops/{shop}/products/{product}/description', [ProductController::class, 'changeDescription'])->name('product.changeDescription');
-    Route::patch('/shops/{shop}/products/{product}/price', [ProductController::class, 'changePrice'])->name('product.changePrice');
-    Route::patch('/shops/{shop}/products/{product}/min_order', [ProductController::class, 'changeMinOrder'])->name('product.changeMinOrder');
-    Route::patch('/shops/{shop}/products/{product}/max_order', [ProductController::class, 'changeMaxOrder'])->name('product.changeMaxOrder');
-    Route::patch('/shops/{shop}/products/{product}/image_url', [ProductController::class, 'changeImageUrl'])->name('product.changeImageUrl');
-});
-
 Route::get('/shops/{shop}/products/{product}', [ProductController::class, 'show'])->name('product.show');
 Route::get('/shops/{shop}/products', [ProductController::class, 'shopProducts'])->name('product.shopProducts');
 Route::get('/products', [ProductController::class, 'index'])->name('product.index');
