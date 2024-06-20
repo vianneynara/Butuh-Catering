@@ -248,5 +248,7 @@ class ShopController extends Controller
                 'message' => 'Unauthorized',
             ], 401);
         }
+
+        return true;
     }
 }
