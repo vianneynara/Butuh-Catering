@@ -21,5 +21,7 @@ class MainDatabaseSeeder extends Seeder
     {
         // Ordered in a way that the foreign key constraints are satisfied
         (new UserSeeder)->run();
+        (new ShopSeeder)->run();
+        (new ProductSeeder)->run();
     }
 }
