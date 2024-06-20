@@ -42,18 +42,23 @@ class CartItemController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Product $product, $quantity)
+    public function store(Request $request, Product $product)
     {
         $user = Auth::user();
 
         $existingCartItem = CartItem::where('user_id', $user->getAuthIdentifier())
             ->where('product_id', $product->getKey())
             ->first();
+            
+        $validated = $request->validate([
+            'quantity' => ['required', 'integer', 'min:1', 'max:' . $product->value('max_order')],
+            'notes' => ['string', 'max:255']
+        ]);
         
         // Check whether the quantity summation exceeds the max_order
-        $sumQty = $quantity;
+        $sumQty = $existingCartItem->value('quantity');
         if ($existingCartItem) {
-            $sumQty += $existingCartItem->value('quantity');
+            $sumQty += $validated['quantity'];
         }
         if ($sumQty > $product->value('max_order')) {
             return response()->json([
@@ -63,13 +68,14 @@ class CartItemController extends Controller
 
         if ($existingCartItem) {
             $existingCartItem->update([
-                'quantity' => $quantity,
+                'quantity' => $sumQty,
             ]);
         } else {
             CartItem::create([
                 'user_id' => $user->getAuthIdentifier(),
                 'product_id' => $product->getKey(),
-                'quantity' => $quantity,
+                'quantity' => $sumQty,
+                'notes' => $validated['notes'],
             ]);
         }
 
@@ -108,6 +114,7 @@ class CartItemController extends Controller
 
         $validated = $request->validate([
             'quantity' => ['required', 'integer', 'min:1', 'max:' . $maxOrder],
+            'notes' => ['string', 'max:255']
         ]);
 
         $cartItem->update([
@@ -169,6 +176,24 @@ class CartItemController extends Controller
 
         return response()->json([
             'message' => 'Cart item updated successfully',
+        ], 200);
+    }
+
+    /**
+     * Change the notes of the specified resource.
+     */
+    public function changeNotes(Request $request, CartItem $cartItem)
+    {
+        $this->checkCartItemOwnership($cartItem);
+
+        $validated = $request->validate([
+            'notes' => ['string', 'max:255'],
+        ]);
+
+        $cartItem->update($validated);
+
+        return response()->json([
+            'message' => 'Cart item notes updated successfully',
         ], 200);
     }
 
