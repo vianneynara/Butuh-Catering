@@ -22,7 +22,7 @@ class ShopController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
+    public function create()
     {
         $user = Auth::user();
 

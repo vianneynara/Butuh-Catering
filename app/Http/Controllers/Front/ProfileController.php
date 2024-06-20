@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,17 +26,22 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(Request $request)
     {
-        $request->user()->fill($request->validated());
+        $userModel = User::where('user_id', Auth::id())->first();
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
+        $validated = $request->validate([
+            'username' => ['required', 'string', 'max:32', 'unique:users,username,' . $userModel->getKey()],
+            'first_name' => ['required', 'string', 'max:50'],
+            'last_name' => ['nullable', 'string', 'max:50'],
+            'email' => ['required', 'string', 'email', 'max:320', 'unique:users,email,' . $userModel->getKey()],
+            'phone_number' => ['nullable', 'string', 'max:16', 'unique:users,phone_number,' . $userModel->getKey()],
+            'date_of_birth' => ['nullable', 'date']
+        ]);
+        
+        $userModel->update($validated);
 
-        $request->user()->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return redirect()->route('profile.edit')->with('status', 'profile-updated');
     }
 
     /**
@@ -56,6 +62,6 @@ class ProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return Redirect::to('/');
+        return redirect()->route('homepage');
     }
 }
