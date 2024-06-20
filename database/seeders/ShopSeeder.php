@@ -59,6 +59,16 @@ class ShopSeeder extends Seeder
                 "schedules_data" => "[]",
                 "created_at" => "2024-06-18 20:47:28",
                 "updated_at" => "2024-06-18 20:47:28"
+            ],
+            [
+                "shop_id" => 4,
+                "user_id" => 12,
+                "name" => "DiNoFnB",
+                "address" => "Address 4",
+                "status" => "open",
+                "schedules_data" => "[]",
+                "created_at" => "2024-06-18 20:47:28",
+                "updated_at" => "2024-06-18 20:47:28"
             ]
         ];
     }

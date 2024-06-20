@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('shop_id');
             $table->string('name', 50);
             $table->string('description', 255);
-            $table->decimal('price', 7, 2);
+            $table->integer('price');
             $table->unsignedTinyInteger('min_order')->default(1);
             $table->unsignedSmallInteger('max_order')->nullable();
             $table->string('image_url', 255);
