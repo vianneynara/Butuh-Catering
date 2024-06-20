@@ -8,7 +8,7 @@ use App\Http\Controllers\ProductController;
 
 
 Route::get('/',function() {
-    return view('auth.login');
+    return view('homepage');
 });
 
 Route::get('/dashboard', function () {
