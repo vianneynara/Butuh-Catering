@@ -251,4 +251,36 @@ class ShopController extends Controller
 
         return true;
     }
+
+    // API requests
+
+    /**
+     * Get all the shops.
+     */
+    public function getAllShops()
+    {
+        $data = Shop::paginate(10);
+
+        return response()->json(
+            [
+                $data,
+            ],
+            200,
+            ['Content-Type' => 'application/json']
+        );
+    }
+
+    /**
+     * Get the shop by the given ID.
+     */
+    public function getShop(Shop $shop)
+    {
+        return response()->json(
+            [
+                'shop' => $shop,
+            ],
+            200,
+            ['Content-Type' => 'application/json']
+        );
+    }
 }

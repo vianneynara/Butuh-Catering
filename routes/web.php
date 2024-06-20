@@ -31,27 +31,26 @@ Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.up
 
 Route::get('/shops', [ShopController::class, 'index'])->name('shop.index');
 Route::get('/shops/create', [ShopController::class, 'create'])->name('shop.create');
-Route::post('/shops', [ShopController::class, 'store'])->name('shop.store');
+Route::post('/shops/new', [ShopController::class, 'store'])->name('shop.store');
 Route::get('/shops/{shop}', [ShopController::class, 'show'])->name('shop.show');
 Route::get('/shops/{shop}/products', [ProductController::class, 'shopProducts'])->name('product.shopProducts');
 
 // Product routes
 
 Route::get('/shops/{shop}/products/create', [ProductController::class, 'create'])->name('product.create');
-Route::post('/shops/{shop}/products', [ProductController::class, 'store'])->name('product.store');
-Route::get('/shops/{shop}/products/{product}/edit', [ProductController::class, 'edit'])->name('product.edit');
-Route::put('/shops/{shop}/products/{product}', [ProductController::class, 'update'])->name('product.update');
-Route::delete('/shops/{shop}/products/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
+Route::post('/shops/{shop}/products/new', [ProductController::class, 'store'])->name('product.store');
+Route::get('/shops/{shop}/{product}/edit', [ProductController::class, 'edit'])->name('product.edit');
+Route::put('/shops/{shop}/{product}', [ProductController::class, 'update'])->name('product.update');
+Route::delete('/shops/{shop}/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
 
-Route::patch('/shops/{shop}/{product}/name', [ProductController::class, 'changeName'])->name('product.changeName');
-Route::patch('/shops/{shop}/{product}/description', [ProductController::class, 'changeDescription'])->name('product.changeDescription');
-Route::patch('/shops/{shop}/{product}/price', [ProductController::class, 'changePrice'])->name('product.changePrice');
-Route::patch('/shops/{shop}/{product}/min_order', [ProductController::class, 'changeMinOrder'])->name('product.changeMinOrder');
-Route::patch('/shops/{shop}/{product}/max_order', [ProductController::class, 'changeMaxOrder'])->name('product.changeMaxOrder');
-Route::patch('/shops/{shop}/{product}/image_url', [ProductController::class, 'changeImageUrl'])->name('product.changeImageUrl');
+Route::patch('/products/{product}/name', [ProductController::class, 'changeName'])->name('product.changeName');
+Route::patch('/products/{product}/description', [ProductController::class, 'changeDescription'])->name('product.changeDescription');
+Route::patch('/products/{product}/price', [ProductController::class, 'changePrice'])->name('product.changePrice');
+Route::patch('/products/{product}/min_order', [ProductController::class, 'changeMinOrder'])->name('product.changeMinOrder');
+Route::patch('/products/{product}/max_order', [ProductController::class, 'changeMaxOrder'])->name('product.changeMaxOrder');
+Route::patch('/products/{product}/image_url', [ProductController::class, 'changeImageUrl'])->name('product.changeImageUrl');
 
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('product.show');
-Route::get('/products', [ProductController::class, 'index'])->name('product.index');
 
 // Cart Item routes
 
@@ -72,3 +71,10 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/search', [ProductController::class, 'search'])->name('search');
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
+
+// API routes
+
+Route::get('/api/shops', [ShopController::class, 'getAllShops']);
+Route::get('/api/shops/{shop}', [ShopController::class, 'getShop']);
+Route::get('/api/products', [ProductController::class, 'getAllProducts']);
+Route::get('/api/products/{product}', [ProductController::class, 'getProduct']);
