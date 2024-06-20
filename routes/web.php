@@ -1,12 +1,11 @@
 <?php
 
-use App\Http\Controllers\CartItemController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ShopController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Front\CartItemController;
+use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Front\ProductController;
+use App\Http\Controllers\Front\ProfileController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/',function() {
     return view('homepage');
