@@ -1,7 +1,7 @@
 @props(['index' => 0])
 
 <div>
-    <div class="flex h-[50px] border border-solid items-center">
+    <div class="flex h-[60px] items-center mt-1 shadow-md">
         <div class="form-control">
             <label class="label cursor-pointer">
                 <input type="checkbox" checked="checked" class="checkbox"/>
@@ -9,17 +9,17 @@
         </div>
         <div class="w-full flex items-center justify-between">
             <div class="flex gap-2 h-full">
-                <img class="w-[45px] h-[45px]" src="https://placeholder.com/45x45">
+                <img class="w-[45px] h-[45px] rounded-md" src="https://placeholder.com/45x45">
                 <div class="w-64 flex flex-col items-start my-0">
                     <p class="text-[13px]">Kuenya WZ</p>
                     <p class="text-[10px]">Paingan, Yogyakarta asijdoi aidj aoisjd ioasjdo</p>
                 </div>
             </div>
             <div class="flex gap-[10px] mr-2">
-                <img class="h-[30px] w-[30px]" src="https://placeholder.com/30x30" alt="">
-                <img class="h-[30px] w-[30px]" src="https://placeholder.com/30x30" alt="">
+                <img class="h-[30px] w-[30px] rounded-md" src="https://placeholder.com/30x30" alt="">
+                <img class="h-[30px] w-[30px] rounded-md" src="https://placeholder.com/30x30" alt="">
                 <button id="arrow" class="arrow cursor-pointer">
-                    <img class="h-[30px] w-[30px]" src="https://placeholder.com/30x30" alt="">
+                    <img class="h-[30px] w-[30px] rounded-md" src="https://placeholder.com/30x30" alt="">
                 </button>
             </div>
         </div>

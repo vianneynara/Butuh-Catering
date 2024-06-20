@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="id" class="w-full m-auto">
+<html lang="id" class="w-full m-auto bg-white">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -9,13 +9,13 @@
     @vite('resources/css/app.css')
 </head>
 <body>
-<div class="max-w-lg flex flex-col items-center m-auto border">
-    <div class="w-full h-[70px] flex items-center gap-5">
-        <img src="../../public/icons/arrow-back.svg">
+<div class="max-w-lg flex flex-col items-center m-auto">
+    <div class="w-full h-[70px] flex items-center gap-3 bg-[#FFFAF2] shadow-md">
+        <img class="ml-2" src="../../public/icons/arrow-back.svg">
         <p>Keranjang Belanja</p>
     </div>
 
-    <div class="w-full">
+    <div class="w-full mt-2">
         <x-cart-link :index="1"></x-cart-link>
     </div>
 </div>
