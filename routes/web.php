@@ -14,6 +14,10 @@ Route::get('/', function () {
 
 // Guest routes
 
+Route::get('/mt', function () {
+    return view('./error/maintenance');
+});
+
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/homepage', [HomeController::class, 'homepage'])->name('homepage');
