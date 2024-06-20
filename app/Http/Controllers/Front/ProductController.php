@@ -18,7 +18,7 @@ class ProductController extends Controller
     {
         $products = Product::paginate(10);
 
-        return view('product.index', ['products' => $products]);
+        return view('product.index', ['products' => $products);
     }
 
     /**
@@ -38,7 +38,7 @@ class ProductController extends Controller
     {
         ShopController::checkShopOwnership($shop);
 
-        return view('product.create', ['shop' => $shop]);
+        return view('product.create', ['shop' => $shop->attributesToArray()]);
     }
 
     /**
@@ -70,7 +70,10 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('product.show', ['product' => $product]);
+        return view('product.show', [
+            'product' => $product->attributesToArray(),
+            'shop' => Shop::find($product->shop_id)->first()->attributesToArray(),
+        ]);
     }
 
     /**
@@ -80,7 +83,7 @@ class ProductController extends Controller
     {
         ShopController::checkShopOwnership($shop);
 
-        return view('product.edit', ['product' => $product]);
+        return view('product.edit', ['product' => $product->attributesToArray()]);
     }
 
     /**
