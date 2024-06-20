@@ -12,6 +12,10 @@ Route::get('/',function() {
     return view('homepage');
 });
 
+Route::get('/mt', function () {
+    return view('./error/maintenance');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
