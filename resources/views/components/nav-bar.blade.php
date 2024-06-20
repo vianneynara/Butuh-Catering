@@ -1,4 +1,4 @@
-<nav class="fixed top-0 right-0 w-full p-2 bg-white shadow-md flex items-center justify-between">
+<nav class="fixed top-0 right-0 w-full p-2 bg-white shadow-md flex items-center justify-between z-10">
     <!-- Hamburger Menu -->
     <div>
         <x-profile :login="false"></x-profile>
