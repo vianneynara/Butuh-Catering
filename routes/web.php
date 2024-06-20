@@ -4,12 +4,11 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProductController;
 
 
 Route::get('/',function() {
-    return view('homepage');
+    return view('auth.login');
 });
 
 Route::get('/dashboard', function () {
@@ -27,7 +26,7 @@ require __DIR__.'/auth.php';
 route::get('admin/dashboard',[HomeController::class,'index'])->middleware(['auth','admin']);
 
 Route::middleware('auth')->group(function () {
-    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
+    Route::post('logout', [AuthController::class, 'logout'])
         ->name('logout');
 });
 

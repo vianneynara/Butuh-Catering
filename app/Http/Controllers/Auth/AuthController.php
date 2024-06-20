@@ -72,17 +72,24 @@ class AuthController extends Controller
         ]);
     }
 
+    /**
+     * Destroy an authenticated session.
+     */
+    public function logout(Request $request)
+    {
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login');
+    }
 
     public function homepage()
     {
         $user = Auth::user();
         return view('homepage', ['user' => $user]);
-    }
-
-    public function logout()
-    {
-        Auth::logout();
-        return redirect('/login');
     }
 }
 
