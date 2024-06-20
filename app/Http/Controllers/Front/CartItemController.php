@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Front;
 
+use App\Http\Controllers\Controller;
 use App\Models\CartItem;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -49,7 +50,7 @@ class CartItemController extends Controller
         $existingCartItem = CartItem::where('user_id', $user->getAuthIdentifier())
             ->where('product_id', $product->getKey())
             ->first();
-        
+
         // Check whether the quantity summation exceeds the max_order
         $sumQty = $quantity;
         if ($existingCartItem) {
@@ -134,7 +135,7 @@ class CartItemController extends Controller
     }
 
     // Resource Finders
-    
+
     /**
      * Get the quantity of the specified resource.
      */
@@ -189,5 +190,7 @@ class CartItemController extends Controller
                 'message' => 'Unauthorized',
             ], 401);
         }
+
+        return true;
     }
 }

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Front;
 
+use App\Http\Controllers\Controller;
 use App\Models\Shop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +22,7 @@ class ShopController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
+    public function create()
     {
         $user = Auth::user();
 
@@ -247,5 +248,39 @@ class ShopController extends Controller
                 'message' => 'Unauthorized',
             ], 401);
         }
+
+        return true;
+    }
+
+    // API requests
+
+    /**
+     * Get all the shops.
+     */
+    public function getAllShops()
+    {
+        $data = Shop::paginate(10);
+
+        return response()->json(
+            [
+                $data,
+            ],
+            200,
+            ['Content-Type' => 'application/json']
+        );
+    }
+
+    /**
+     * Get the shop by the given ID.
+     */
+    public function getShop(Shop $shop)
+    {
+        return response()->json(
+            [
+                'shop' => $shop,
+            ],
+            200,
+            ['Content-Type' => 'application/json']
+        );
     }
 }
