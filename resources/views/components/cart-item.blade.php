@@ -69,7 +69,7 @@
 
     function increment(e) {
         const btn = e.target.parentNode.parentElement.querySelector(
-            'button[data-action="decrement"]'
+            'button[data-action="increment"]'
         );
         const target = btn.nextElementSibling;
         let value = Number(target.value);
