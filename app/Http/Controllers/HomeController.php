@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -8,16 +7,26 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('homepage');
+        // Logic for homepage
+        return view('home');
     }
 
     public function indexAdmin()
     {
-        return view('admin.index');
+        // Logic for admin homepage
+        return view('admin');
+    }
+
+    public function welcome()
+    {
+        // Logic for welcome page
+        return view('welcome');
     }
 
     public function homepage()
     {
+        // Logic for homepage
         return view('homepage');
     }
 }
+

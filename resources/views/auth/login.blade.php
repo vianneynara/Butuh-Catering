@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Tailwind</title>
+    <title>Login Form</title>
+    <!-- Include Tailwind CSS via Vite -->
     @vite('resources/css/app.css')
+    <!-- Include Boxicons for icons -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body class="bg-[#F4F4F4] flex flex-col items-center box-sizing-border">
 
@@ -12,6 +15,9 @@
     <!-- Top Bar -->
     <div class="flex flex-col">
         <div class="bg-[#FFFAF2] flex flex-row justify-between p-4 w-full">
+            <a href="{{ route('welcome') }}">
+                <i class='bx bx-arrow-back text-[16px] text-[#D4AE67]'></i>
+            </a>
             <span class="font-['Roboto'] font-bold text-[16px] text-[#D4AE67]">Masuk Akun</span>
             <div></div>
         </div>
@@ -20,23 +26,38 @@
     <!-- Login Form -->
     <div class="shadow-md rounded-[5px] bg-white m-4 p-4 w-[calc(100%_-_20px)] box-sizing-border">
         <div class="flex flex-col items-center w-full">
-            <!-- Email/Phone Input -->
+            <!-- Form -->
             <form class="w-full" action="{{ route('login') }}" method="POST">
                 @csrf
+                <!-- Error Message for General Login Errors -->
+                @if (session('error'))
+                    <div class="text-red-500 text-[10px] mb-4">
+                        {{ session('error') }}
+                    </div>
+                @endif
+
+                <!-- Email/Phone Input -->
                 <div class="relative w-full mb-6">
                     <span class="absolute left-3 top-[-6px] bg-white px-1 font-['Roboto'] font-normal text-[10px] text-[#CDCDCD]">Email / No. Telpon</span>
-                    <div class="rounded-[3px] border border-[#CDCDCD] bg-white flex flex-row justify-between p-2 mt-4 w-full">
+                    <div class="rounded-[3px] border {{ $errors->has('email') ? 'border-red-500' : 'border-[#CDCDCD]' }} bg-white flex flex-row justify-between p-2 mt-4 w-full">
                         <input class="outline-none flex-grow text-gray-700" type="email" placeholder="+62" name="email" id="email" required>
                         <img class="w-5 h-4" src="../assets/vectors/vector_153_x2.svg" />
                     </div>
+                    @if ($errors->has('email'))
+                        <span class="text-red-500 text-[10px] mt-1">{{ $errors->first('email') }}</span>
+                    @endif
                 </div>
 
+                <!-- Password Input -->
                 <div class="relative w-full mb-6">
                     <span class="absolute left-3 top-[-6px] bg-white px-1 font-['Roboto'] font-normal text-[10px] text-[#CDCDCD]">Password</span>
-                    <div class="rounded-[3px] border border-[#CDCDCD] bg-white flex flex-row justify-between p-2 mt-4 w-full">
+                    <div class="rounded-[3px] border {{ $errors->has('password') ? 'border-red-500' : 'border-[#CDCDCD]' }} bg-white flex flex-row justify-between p-2 mt-4 w-full">
                         <input class="outline-none flex-grow text-gray-700" type="password" name="password" id="password" required>
                         <img class="w-5 h-4" src="../assets/vectors/vector_153_x2.svg" />
                     </div>
+                    @if ($errors->has('password'))
+                        <span class="text-red-500 text-[10px] mt-1">{{ $errors->first('password') }}</span>
+                    @endif
                 </div>
 
                 <!-- Login Button -->
@@ -67,6 +88,7 @@
     <span class="font-['Roboto'] font-normal text-[9px] text-[#CDCDCD]">version 0.1.0 alpha</span>
 </div>
 
+<!-- JavaScript for Form Validation -->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const emailInput = document.getElementById('email');

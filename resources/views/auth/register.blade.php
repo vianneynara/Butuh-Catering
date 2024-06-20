@@ -5,22 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Tailwind</title>
     @vite('resources/css/app.css')
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body class="bg-[#F4F4F4] flex flex-col items-center box-sizing-border">
-
 <div class="w-full">
     <!-- Top Bar -->
     <div class="flex flex-col">
-        <div class="bg-[#FFFAF2] flex flex-row justify-between p-2 w-full">
-            <span class="ml-2 font-['Roboto'] font-medium text-[12px] text-[#000000]">11:07</span>
-            <div class="flex flex-row items-center space-x-1">
-                <img class="w-4 h-3" src="../assets/vectors/vector_249_x2.svg" />
-                <img class="w-3 h-3" src="../assets/vectors/vector_143_x2.svg" />
-                <img class="w-1.5 h-3" src="../assets/vectors/vector_219_x2.svg" />
-            </div>
-        </div>
         <div class="bg-[#FFFAF2] flex flex-row justify-between p-4 w-full">
-            <img class="w-5 h-4" src="../assets/vectors/vector_95_x2.svg" />
+            <a href="{{ route('welcome') }}">
+                <i class='bx bx-arrow-back text-[16px] text-[#D4AE67]'></i>
+            </a>
             <span class="font-['Roboto'] font-bold text-[16px] text-[#D4AE67]">Buat Akun</span>
             <div></div>
         </div>
@@ -29,21 +23,46 @@
     <!-- Register Form -->
     <div class="shadow-md rounded-[5px] bg-white m-4 p-4 w-[calc(100%_-_20px)] box-sizing-border">
         <div class="flex flex-col items-center w-full">
-            <!-- Register Form -->
             <form class="w-full" action="{{ route('register') }}" method="POST">
                 @csrf
                 <div class="relative w-full mb-6">
-                    <span class="absolute left-3 top-[-6px] bg-white px-1 font-['Roboto'] font-normal text-[10px] text-[#CDCDCD]">Nama</span>
+                    <span class="absolute left-3 top-[-6px] bg-white px-1 font-['Roboto'] font-normal text-[10px] text-[#CDCDCD]">Nama Depan</span>
                     <div class="rounded-[3px] border border-[#CDCDCD] bg-white flex flex-row justify-between p-2 mt-4 w-full">
-                        <input class="outline-none flex-grow text-gray-700" type="text" name="name" id="name" required>
+                        <input class="outline-none flex-grow text-gray-700" type="text" name="first_name" id="first_name" value="{{ old('first_name') }}" required>
                     </div>
+                    @error('first_name')
+                    <div class="text-red-500 text-xs mt-2">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="relative w-full mb-6">
+                    <span class="absolute left-3 top-[-6px] bg-white px-1 font-['Roboto'] font-normal text-[10px] text-[#CDCDCD]">Nama Belakang</span>
+                    <div class="rounded-[3px] border border-[#CDCDCD] bg-white flex flex-row justify-between p-2 mt-4 w-full">
+                        <input class="outline-none flex-grow text-gray-700" type="text" name="last_name" id="last_name" value="{{ old('last_name') }}">
+                    </div>
+                    @error('last_name')
+                    <div class="text-red-500 text-xs mt-2">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="relative w-full mb-6">
+                    <span class="absolute left-3 top-[-6px] bg-white px-1 font-['Roboto'] font-normal text-[10px] text-[#CDCDCD]">Username</span>
+                    <div class="rounded-[3px] border border-[#CDCDCD] bg-white flex flex-row justify-between p-2 mt-4 w-full">
+                        <input class="outline-none flex-grow text-gray-700" type="text" name="username" id="username" value="{{ old('username') }}" required>
+                    </div>
+                    @error('username')
+                    <div class="text-red-500 text-xs mt-2">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="relative w-full mb-6">
                     <span class="absolute left-3 top-[-6px] bg-white px-1 font-['Roboto'] font-normal text-[10px] text-[#CDCDCD]">Email</span>
                     <div class="rounded-[3px] border border-[#CDCDCD] bg-white flex flex-row justify-between p-2 mt-4 w-full">
-                        <input class="outline-none flex-grow text-gray-700" type="email" name="email" id="email" required>
+                        <input class="outline-none flex-grow text-gray-700" type="email" name="email" id="email" value="{{ old('email') }}" required>
                     </div>
+                    @error('email')
+                    <div class="text-red-500 text-xs mt-2">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="relative w-full mb-6">
@@ -51,9 +70,41 @@
                     <div class="rounded-[3px] border border-[#CDCDCD] bg-white flex flex-row justify-between p-2 mt-4 w-full">
                         <input class="outline-none flex-grow text-gray-700" type="password" name="password" id="password" required>
                     </div>
+                    @error('password')
+                    <div class="text-red-500 text-xs mt-2">{{ $message }}</div>
+                    @enderror
                 </div>
 
-                <!-- Register Button -->
+                <div class="relative w-full mb-6">
+                    <span class="absolute left-3 top-[-6px] bg-white px-1 font-['Roboto'] font-normal text-[10px] text-[#CDCDCD]">Konfirmasi Password</span>
+                    <div class="rounded-[3px] border border-[#CDCDCD] bg-white flex flex-row justify-between p-2 mt-4 w-full">
+                        <input class="outline-none flex-grow text-gray-700" type="password" name="password_confirmation" id="password_confirmation" required>
+                    </div>
+                    @error('password_confirmation')
+                    <div class="text-red-500 text-xs mt-2">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="relative w-full mb-6">
+                    <span class="absolute left-3 top-[-6px] bg-white px-1 font-['Roboto'] font-normal text-[10px] text-[#CDCDCD]">Nomor Telepon</span>
+                    <div class="rounded-[3px] border border-[#CDCDCD] bg-white flex flex-row justify-between p-2 mt-4 w-full">
+                        <input class="outline-none flex-grow text-gray-700" type="text" name="phone_number" id="phone_number" value="{{ old('phone_number') }}">
+                    </div>
+                    @error('phone_number')
+                    <div class="text-red-500 text-xs mt-2">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="relative w-full mb-6">
+                    <span class="absolute left-3 top-[-6px] bg-white px-1 font-['Roboto'] font-normal text-[10px] text-[#CDCDCD]">Tanggal Lahir</span>
+                    <div class="rounded-[3px] border border-[#CDCDCD] bg-white flex flex-row justify-between p-2 mt-4 w-full">
+                        <input class="outline-none flex-grow text-gray-700" type="date" name="date_of_birth" id="date_of_birth" value="{{ old('date_of_birth') }}">
+                    </div>
+                    @error('date_of_birth')
+                    <div class="text-red-500 text-xs mt-2">{{ $message }}</div>
+                    @enderror
+                </div>
+
                 <button type="submit" id="registerButton" class="bg-[#CDCDCD] text-white font-['Roboto'] font-bold text-[16px] w-full py-2 rounded-[10px] mb-6">Buat Akun</button>
             </form>
 
@@ -80,16 +131,19 @@
     <!-- Version Information -->
     <span class="font-['Roboto'] font-normal text-[9px] text-[#CDCDCD]">version 0.1.0 alpha</span>
 </div>
-
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const nameInput = document.getElementById('name');
+        const firstNameInput = document.getElementById('first_name');
+        const lastNameInput = document.getElementById('last_name');
+        const usernameInput = document.getElementById('username');
         const emailInput = document.getElementById('email');
         const passwordInput = document.getElementById('password');
+        const phoneNumberInput = document.getElementById('phone_number');
+        const dateOfBirthInput = document.getElementById('date_of_birth');
         const registerButton = document.getElementById('registerButton');
 
         function checkInputs() {
-            if (nameInput.value.trim() !== '' && emailInput.value.trim() !== '' && passwordInput.value.trim() !== '') {
+            if (firstNameInput.value.trim() !== '' && usernameInput.value.trim() !== '' && emailInput.value.trim() !== '' && passwordInput.value.trim() !== '') {
                 registerButton.classList.remove('bg-[#CDCDCD]');
                 registerButton.classList.add('bg-yellow-800');
             } else {
@@ -98,11 +152,15 @@
             }
         }
 
-        nameInput.addEventListener('input', checkInputs);
+        firstNameInput.addEventListener('input', checkInputs);
+        lastNameInput.addEventListener('input', checkInputs);
+        usernameInput.addEventListener('input', checkInputs);
         emailInput.addEventListener('input', checkInputs);
         passwordInput.addEventListener('input', checkInputs);
+        phoneNumberInput.addEventListener('input', checkInputs);
+        dateOfBirthInput.addEventListener('input', checkInputs);
     });
 </script>
-
 </body>
 </html>
+
