@@ -1,5 +1,4 @@
 <?php
-
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
@@ -7,25 +6,28 @@ use App\Models\Product;
 
 class ProductSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
         Product::create([
-            'namaProduk' => 'Paket A',
-            'detail' => 'Nasi + Sayur + Ayam + Telor',
-            'harga' => 20000,
-            'image_url' => 'E:\File Penting\USD\SEMESTER 4\Platform\Butuh-Catering\public\nasi-kotak-23k.png', // Adjust the path to your image
+            'name' => 'Paket A',
+            'description' => 'Nasi + Sayur + Ayam + Telor',
+            'price' => 20000,
+            'min_order' => 1,
+            'max_order' => 10,
+            'image_url' => 'nasi-kotak-23k.png',
+            'shop_id' => 1,
         ]);
 
         Product::create([
-            'namaProduk' => 'Paket Ayam Kecap',
-            'detail' => 'Nasi + Sayur + Ayam Kecap',
-            'harga' => 18000,
-            'image_url' => 'E:\File Penting\USD\SEMESTER 4\Platform\Butuh-Catering\public\Nasi Kotak 2.png', // Adjust the path to your image
+            'name' => 'Paket B',
+            'description' => 'Nasi + Sayur + Daging + Tempe',
+            'price' => 25000,
+            'min_order' => 1,
+            'max_order' => 5,
+            'image_url' => 'nasi-kotak-25k.png',
+            'shop_id' => 1,
         ]);
+
+        // ... data lainnya
     }
 }

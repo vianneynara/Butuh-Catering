@@ -42,7 +42,7 @@ class ShopSeeder extends Seeder
             ],
             [
                 "shop_id" => 2,
-                "user_id" => 6,
+                "user_id" => 2,
                 "name" => "Grimes Cakery",
                 "address" => "Address 2",
                 "status" => "open",
@@ -52,7 +52,7 @@ class ShopSeeder extends Seeder
             ],
             [
                 "shop_id" => 3,
-                "user_id" => 9,
+                "user_id" => 3,
                 "name" => "Kuphal's Catering",
                 "address" => "Address 3",
                 "status" => "open",

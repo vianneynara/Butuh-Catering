@@ -70,6 +70,6 @@ Route::middleware(['web'])->group(function () {
 
 Route::get('/search', [ProductController::class, 'search'])->name('search');
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
-
-
-
+Route::get('/productPage',function() {
+    return view('productPage');
+});

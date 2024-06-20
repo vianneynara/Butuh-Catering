@@ -1,14 +1,18 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        // Logic for homepage
-        return view('home');
+        $products = Product::all(); // Mengambil semua produk dari database
+
+        return view('homepage', [
+            'products' => $products
+        ]);
     }
 
     public function indexAdmin()

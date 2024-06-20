@@ -39,14 +39,20 @@
             <x-product-circle>Berkuah</x-product-circle>
         </div>
         <x-product-section-title>Produk Terlaris</x-product-section-title>
-        <div class="flex overflow-x-auto scrollbar-hide w-full">
-            <x-product-square title="Rendang Gokil" price="Rp 10.000" addr="Paingan, Yogyakarta" :itemSold="31"></x-product-square>
-            <x-product-square title="Rendang Gokil" price="Rp 10.000" addr="Paingan, Yogyakarta" :itemSold="31"></x-product-square>
-            <x-product-square title="Rendang Gokil" price="Rp 10.000" addr="Paingan, Yogyakarta" :itemSold="31"></x-product-square>
-            <x-product-square title="Rendang Gokil" price="Rp 10.000" addr="Paingan, Yogyakarta" :itemSold="31"></x-product-square>
-            <x-product-square title="Rendang Gokil" price="Rp 10.000" addr="Paingan, Yogyakarta" :itemSold="31"></x-product-square>
-            <x-product-square title="Rendang Gokil" price="Rp 10.000" addr="Paingan, Yogyakarta" :itemSold="31"></x-product-square>
-        </div>
+        <div id="aa" class="flex overflow-x-auto scrollbar-hide w-full">
+                @foreach ({{$products as $product}})
+                    <x-product-square
+                        :title="{{ $product->name }}"
+                        :price="Rp {{ number_format($product->price, 0, ',', '.') }}"
+                        :addr="{{ $product->shop->addr }}"
+                        :itemSold="{{ $product->itemSold }}"
+                    ></x-product-square>
+                @endforeach
+            </div>
+        <script>
+            document.addEventListener
+        </script>
+
         <x-product-section-title>Produk di Sekitarmu</x-product-section-title>
         <div class="flex overflow-x-auto scrollbar-hide w-full">
             <x-product-square title="Rendang Gokil" price="Rp 10.000" addr="Paingan, Yogyakarta" :itemSold="31"></x-product-square>
