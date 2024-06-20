@@ -9,7 +9,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ProductController;
 
 Route::get('/',function() {
-    return view('welcome');
+    return view('homepage');
 });
 
 Route::get('/dashboard', function () {
