@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\CartItemController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\HomePageController;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ProductController;
 
 Route::get('/',function() {
     return view('welcome');
@@ -21,13 +23,39 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+// Shop routes
+
 
 route::get('admin/dashboard',[HomeController::class,'index'])->middleware(['auth','admin']);
 Route::get('/register', [RegisterController::class, 'create'])->name('register');
 route::get('/cart', function() {
     return view('cart');
 });
+    Route::patch('/shops/{shop}/products/{product}/name', [ProductController::class, 'changeName'])->name('product.changeName');
+    Route::patch('/shops/{shop}/products/{product}/description', [ProductController::class, 'changeDescription'])->name('product.changeDescription');
+    Route::patch('/shops/{shop}/products/{product}/price', [ProductController::class, 'changePrice'])->name('product.changePrice');
+    Route::patch('/shops/{shop}/products/{product}/min_order', [ProductController::class, 'changeMinOrder'])->name('product.changeMinOrder');
+    Route::patch('/shops/{shop}/products/{product}/max_order', [ProductController::class, 'changeMaxOrder'])->name('product.changeMaxOrder');
+    Route::patch('/shops/{shop}/products/{product}/image_url', [ProductController::class, 'changeImageUrl'])->name('product.changeImageUrl');
+});
 
+Route::get('/shops/{shop}/products/{product}', [ProductController::class, 'show'])->name('product.show');
+Route::get('/shops/{shop}/products', [ProductController::class, 'shopProducts'])->name('product.shopProducts');
+Route::get('/products', [ProductController::class, 'index'])->name('product.index');
 
+// Cart Item routes
 
+Route::middleware('auth')->group(function () {
+    Route::get('/cart', [CartItemController::class, 'index'])->name('cartItem.index');
+    Route::get('/cart/form/{productId}', [CartItemController::class, 'create'])->name('cartItem.create');
+    Route::post('/cart/{productId}/{quantity}', [CartItemController::class, 'store'])->name('cartItem.store');
+    Route::delete('/cart/{cartItem}', [CartItemController::class, 'destroy'])->name('cartItem.destroy');
+
+    Route::patch('/cart/{cartItem}/{quantity}', [CartItemController::class, 'changeQuantity'])->name('cartItem.changeQuantity');
+    Route::get('/cart/{cartItem)/quantity', [CartItemController::class, 'getQuantity'])->name('cartItem.getQuantity');
+});
+
+require __DIR__.'/auth.php';
+
+route::get('admin/dashboard',[HomeController::class,'index'])->middleware(['auth','admin']);
+Route::get('/register', [RegisterController::class, 'create'])->name('register');
