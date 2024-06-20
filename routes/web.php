@@ -8,10 +8,6 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ProductController;
 
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\HomePageController;
-use App\Http\Controllers\ProductController;
-
 Route::get('/',function() {
     return view('welcome');
 });
@@ -28,12 +24,7 @@ Route::middleware('auth')->group(function () {
 
 // Shop routes
 
-
-route::get('admin/dashboard',[HomeController::class,'index'])->middleware(['auth','admin']);
-Route::get('/register', [RegisterController::class, 'create'])->name('register');
-route::get('/cart', function() {
-    return view('cart');
-});
+Route::middleware('auth')->group(function () {
     Route::patch('/shops/{shop}/products/{product}/name', [ProductController::class, 'changeName'])->name('product.changeName');
     Route::patch('/shops/{shop}/products/{product}/description', [ProductController::class, 'changeDescription'])->name('product.changeDescription');
     Route::patch('/shops/{shop}/products/{product}/price', [ProductController::class, 'changePrice'])->name('product.changePrice');
