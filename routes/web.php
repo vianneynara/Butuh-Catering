@@ -37,6 +37,27 @@ Route::get('/shops/{shop}/products/{product}', [ProductController::class, 'show'
 Route::get('/shops/{shop}/products', [ProductController::class, 'shopProducts'])->name('product.shopProducts');
 Route::get('/products', [ProductController::class, 'index'])->name('product.index');
 
+// Product routes
+
+Route::middleware('auth')->group(function () {
+    Route::get('/shops/{shop}/products/create', [ProductController::class, 'create'])->name('product.create');
+    Route::post('/shops/{shop}/products', [ProductController::class, 'store'])->name('product.store');
+    Route::get('/shops/{shop}/products/{product}/edit', [ProductController::class, 'edit'])->name('product.edit');
+    Route::put('/shops/{shop}/products/{product}', [ProductController::class, 'update'])->name('product.update');
+    Route::delete('/shops/{shop}/products/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
+
+    Route::patch('/shops/{shop}/products/{product}/name', [ProductController::class, 'changeName'])->name('product.changeName');
+    Route::patch('/shops/{shop}/products/{product}/description', [ProductController::class, 'changeDescription'])->name('product.changeDescription');
+    Route::patch('/shops/{shop}/products/{product}/price', [ProductController::class, 'changePrice'])->name('product.changePrice');
+    Route::patch('/shops/{shop}/products/{product}/min_order', [ProductController::class, 'changeMinOrder'])->name('product.changeMinOrder');
+    Route::patch('/shops/{shop}/products/{product}/max_order', [ProductController::class, 'changeMaxOrder'])->name('product.changeMaxOrder');
+    Route::patch('/shops/{shop}/products/{product}/image_url', [ProductController::class, 'changeImageUrl'])->name('product.changeImageUrl');
+});
+
+Route::get('/shops/{shop}/products/{product}', [ProductController::class, 'show'])->name('product.show');
+Route::get('/shops/{shop}/products', [ProductController::class, 'shopProducts'])->name('product.shopProducts');
+Route::get('/products', [ProductController::class, 'index'])->name('product.index');
+
 // Cart Item routes
 
 Route::middleware('auth')->group(function () {
