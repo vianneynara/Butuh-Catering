@@ -12,15 +12,20 @@ Route::get('/', function () {
     return view('homepage');
 });
 
+// Guest routes
+
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/homepage', [HomeController::class, 'homepage'])->name('homepage');
+Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [AuthController::class, 'register']);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
 // Shop routes
 
@@ -64,14 +69,6 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthController::class, 'logout'])
         ->name('logout');
 });
-
-Route::get('/admin', [HomeController::class, 'indexAdmin'])->name('admin');
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
-Route::get('/homepage', [HomeController::class, 'homepage'])->name('homepage');
-Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
-Route::post('/register', [AuthController::class, 'register']);
-Route::get('/welcome', [HomeController::class, 'welcome'])->name('welcome');
 
 Route::get('/search', [ProductController::class, 'search'])->name('search');
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');

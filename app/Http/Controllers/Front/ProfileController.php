@@ -18,9 +18,17 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
+        $user = $this->isLoggedIn();
+
+        if (!$user) {
+            return response()->json([
+                'message' => 'User not logged in',
+            ], 401);
+        } else {
+            return view('profile.edit', [
+                'user' => $user,
+            ]);
+        }
     }
 
     /**
@@ -28,40 +36,43 @@ class ProfileController extends Controller
      */
     public function update(Request $request)
     {
-        $userModel = User::where('user_id', Auth::id())->first();
+        $user = $this->isLoggedIn();
 
-        $validated = $request->validate([
-            'username' => ['required', 'string', 'max:32', 'unique:users,username,' . $userModel->getKey()],
-            'first_name' => ['required', 'string', 'max:50'],
-            'last_name' => ['nullable', 'string', 'max:50'],
-            'email' => ['required', 'string', 'email', 'max:320', 'unique:users,email,' . $userModel->getKey()],
-            'phone_number' => ['nullable', 'string', 'max:16', 'unique:users,phone_number,' . $userModel->getKey()],
-            'date_of_birth' => ['nullable', 'date']
-        ]);
-        
-        $userModel->update($validated);
+        if (!$user) {
+            return response()->json([
+                'message' => 'User not logged in',
+            ], 401);
+        } else {
+            $validated = $request->validate([
+                'username' => ['required', 'string', 'max:32', 'unique:users,username,' . $user->getKey()],
+                'first_name' => ['required', 'string', 'max:50'],
+                'last_name' => ['nullable', 'string', 'max:50'],
+                'email' => ['required', 'string', 'email', 'max:320', 'unique:users,email,' . $user->getKey()],
+                'phone_number' => ['nullable', 'string', 'max:16', 'unique:users,phone_number,' . $user->getKey()],
+                'date_of_birth' => ['nullable', 'date']
+            ]);
 
-        return redirect()->route('profile.edit')->with('status', 'profile-updated');
+            $user->update($validated);
+
+            return redirect()->route('profile.edit')->with('status', 'profile-updated');
+        }
     }
 
+    // Helper method
+
     /**
-     * Delete the user's account.
+     * Check if logged (authenticated) in.
      */
-    public function destroy(Request $request): RedirectResponse
+    public function isLoggedIn()
     {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
-        ]);
+        $user = Auth::user();
 
-        $user = $request->user();
+        if (!$user) {
+            return null;
+        }
 
-        Auth::logout();
+        $userModel = User::where('user_id', $user->getAuthIdentifier())->first();
 
-        $user->delete();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return redirect()->route('homepage');
+        return $userModel;
     }
 }
