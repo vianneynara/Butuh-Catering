@@ -11,7 +11,7 @@
 <body>
 <div class="max-w-lg flex flex-col items-center m-auto">
     <div class="w-full h-[70px] flex items-center gap-3 bg-[#FFFAF2] shadow-md">
-        <img class="ml-2" src="../../public/icons/arrow-back.svg">
+        <img class="ml-2" src="https://placeholder.com/30x30">
         <p>Keranjang Belanja</p>
     </div>
 
