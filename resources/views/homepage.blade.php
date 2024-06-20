@@ -35,8 +35,6 @@
             <x-product-circle>Berkuah</x-product-circle>
             <x-product-circle>Berkuah</x-product-circle>
             <x-product-circle>Berkuah</x-product-circle>
-            <x-product-circle>Berkuah</x-product-circle>
-            <x-product-circle>Berkuah</x-product-circle>
         </div>
         <x-product-section-title>Produk Terlaris</x-product-section-title>
         <div class="flex overflow-x-auto scrollbar-hide w-full">
