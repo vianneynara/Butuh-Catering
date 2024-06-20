@@ -53,23 +53,25 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $validated = $request->validate([
-            'username' => 'required|string',
-            'password' => 'required|string',
+            'email' => ['required', 'string', 'email'],
+            'password' => ['required', 'string'],
         ]);
 
         $credentials = [
-            'username' => $validated['username'],
+            'email' => $validated['email'],
             'password' => $validated['password'],
         ];
 
         if (Auth::attempt($credentials)) {
+            // Authentication passed...
             return redirect()->route('homepage');
         }
 
-        return back()->withErrors([
-            'username' => 'Invalid credentials.',
+        return redirect()->back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
         ]);
     }
+
 
     public function homepage()
     {

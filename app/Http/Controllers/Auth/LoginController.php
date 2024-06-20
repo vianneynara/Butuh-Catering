@@ -23,10 +23,6 @@ class LoginController extends Controller
         ]);
     }
 
-    public function showLoginForm()
-    {
-        return view('auth.login'); // Path to the login view
-    }
     public function logout(Request $request)
     {
         Auth::logout();
