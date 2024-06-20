@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -12,7 +13,11 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+
+        $orders = Order::where('user_id', $user->getAuthIdentifier())->paginate(10);
+
+        return view('order.index', ['orders' => $orders]);
     }
 
     /**
@@ -20,7 +25,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -36,7 +41,9 @@ class OrderController extends Controller
      */
     public function show(Order $orders)
     {
-        //
+        $this->checkOrderOwnership($orders);
+
+        return view('order.show', ['order' => $orders]);
     }
 
     /**
@@ -61,5 +68,27 @@ class OrderController extends Controller
     public function destroy(Order $orders)
     {
         //
+    }
+
+    // Helper methods
+
+    /**
+     * Check whether the order belongs to the authenticated user.
+     */
+    private function checkOrderOwnership(Order $order)
+    {
+        $user = Auth::user();
+
+        if ($user === null) {
+            return response()->json([
+                'message' => 'Authentication required',
+            ], 403);
+        }
+
+        if ($order->user_id !== $user->getAuthIdentifier()) {
+            return response()->json([
+                'message' => 'Unauthorized',
+            ], 403);
+        }
     }
 }
