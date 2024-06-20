@@ -70,9 +70,10 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+        $shop = Shop::where('shop_id', $product->shop_id)->firstOrFail();
         return view('product.show', [
             'product' => $product->attributesToArray(),
-            'shop' => Shop::find($product->shop_id)->first()->attributesToArray(),
+            'shop' => $shop,
         ]);
     }
 
