@@ -34,6 +34,7 @@
             </div>
         </div>
     </div>
+    <x-bot-nav></x-bot-nav>
 </body>
 
 </html>
