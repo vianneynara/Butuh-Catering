@@ -25,7 +25,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
 // Shop routes
 
@@ -43,12 +43,12 @@ Route::get('/shops/{shop}/{product}/edit', [ProductController::class, 'edit'])->
 Route::put('/shops/{shop}/{product}', [ProductController::class, 'update'])->name('product.update');
 Route::delete('/shops/{shop}/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
 
-Route::patch('/products/{product}/name', [ProductController::class, 'changeName'])->name('product.changeName');
-Route::patch('/products/{product}/description', [ProductController::class, 'changeDescription'])->name('product.changeDescription');
-Route::patch('/products/{product}/price', [ProductController::class, 'changePrice'])->name('product.changePrice');
-Route::patch('/products/{product}/min_order', [ProductController::class, 'changeMinOrder'])->name('product.changeMinOrder');
-Route::patch('/products/{product}/max_order', [ProductController::class, 'changeMaxOrder'])->name('product.changeMaxOrder');
-Route::patch('/products/{product}/image_url', [ProductController::class, 'changeImageUrl'])->name('product.changeImageUrl');
+Route::patch('/products/{product}/name', [ProductController::class, 'changeName']);
+Route::patch('/products/{product}/description', [ProductController::class, 'changeDescription']);
+Route::patch('/products/{product}/price', [ProductController::class, 'changePrice']);
+Route::patch('/products/{product}/min_order', [ProductController::class, 'changeMinOrder']);
+Route::patch('/products/{product}/max_order', [ProductController::class, 'changeMaxOrder']);
+Route::patch('/products/{product}/image_url', [ProductController::class, 'changeImageUrl']);
 
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('product.show');
 

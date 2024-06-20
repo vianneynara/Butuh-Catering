@@ -167,10 +167,14 @@ class ProductController extends Controller
 
         $product->update($validated);
 
-        return response()->json([
-            'message' => 'Product description updated successfully',
-            'data' => $product,
-        ], 200);
+        return response()->json(
+            [
+                'message' => 'Product price updated successfully',
+                'data' => $product,
+            ],
+            200,
+            ['Content-Type' => 'application/json']
+        );
     }
 
     /**
@@ -186,10 +190,14 @@ class ProductController extends Controller
 
         $product->update($validated);
 
-        return response()->json([
-            'message' => 'Product price updated successfully',
-            'data' => $product,
-        ], 200);
+        return response()->json(
+            [
+                'message' => 'Product price updated successfully',
+                'data' => $product,
+            ],
+            200,
+            ['Content-Type' => 'application/json']
+        );
     }
 
     /**
@@ -206,10 +214,14 @@ class ProductController extends Controller
 
         $product->update($validated);
 
-        return response()->json([
-            'message' => 'Product min order updated successfully',
-            'data' => $product,
-        ], 200);
+        return response()->json(
+            [
+                'message' => 'Product price updated successfully',
+                'data' => $product,
+            ],
+            200,
+            ['Content-Type' => 'application/json']
+        );
     }
 
     /**
@@ -226,10 +238,14 @@ class ProductController extends Controller
 
         $product->update($validated);
 
-        return response()->json([
-            'message' => 'Product max order updated successfully',
-            'product' => $product,
-        ], 200);
+        return response()->json(
+            [
+                'message' => 'Product price updated successfully',
+                'data' => $product,
+            ],
+            200,
+            ['Content-Type' => 'application/json']
+        );
     }
 
     // Helper methods
