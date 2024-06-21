@@ -8,7 +8,7 @@ class HomeController extends Controller
     public function index()
     {
         // Logic for homepage
-        return view('home');
+        return view('homepage');
     }
 
     public function indexAdmin()
