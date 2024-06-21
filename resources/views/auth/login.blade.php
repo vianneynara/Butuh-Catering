@@ -17,7 +17,7 @@
         <!-- Top Bar -->
         <div class="flex flex-col">
             <div class="bg-[#FFFAF2] flex flex-row justify-between p-4 w-full">
-                <a href="{{ route('welcome') }}">
+                <a href="{{ route('homepage') }}">
                     <i class='bx bx-arrow-back text-[16px] text-[#D4AE67]'></i>
                 </a>
                 <span class="font-['Roboto'] font-bold text-[16px] text-[#D4AE67]">Masuk Akun</span>
@@ -87,7 +87,6 @@
         </div>
     </div>
 
-    <!-- JavaScript for Form Validation -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const emailInput = document.getElementById('email');

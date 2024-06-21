@@ -14,7 +14,7 @@
         <!-- Top Bar -->
         <div class="flex flex-col">
             <div class="bg-[#FFFAF2] flex flex-row justify-between p-4 w-full">
-                <a href="{{ route('welcome') }}">
+                <a href="{{ route('homepage') }}">
                     <i class='bx bx-arrow-back text-[16px] text-[#D4AE67]'></i>
                 </a>
                 <span class="font-['Roboto'] font-bold text-[16px] text-[#D4AE67]">Buat Akun</span>
@@ -27,35 +27,6 @@
             <div class="flex flex-col items-center w-full">
                 <form class="w-full" action="{{ route('register') }}" method="POST">
                     @csrf
-                    <!-- <div class="relative w-full mb-6">
-                    <span class="absolute left-3 top-[-6px] bg-white px-1 font-['Roboto'] font-normal text-[10px] text-[#CDCDCD]">Nama Depan</span>
-                    <div class="rounded-[3px] border border-[#CDCDCD] bg-white flex flex-row justify-between p-2 mt-4 w-full">
-                        <input class="outline-none flex-grow text-gray-700" type="text" name="first_name" id="first_name" value="{{ old('first_name') }}" required>
-                    </div>
-                    @error('first_name')
-                    <div class="text-red-500 text-xs mt-2">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="relative w-full mb-6">
-                    <span class="absolute left-3 top-[-6px] bg-white px-1 font-['Roboto'] font-normal text-[10px] text-[#CDCDCD]">Nama Belakang</span>
-                    <div class="rounded-[3px] border border-[#CDCDCD] bg-white flex flex-row justify-between p-2 mt-4 w-full">
-                        <input class="outline-none flex-grow text-gray-700" type="text" name="last_name" id="last_name" value="{{ old('last_name') }}">
-                    </div>
-                    @error('last_name')
-                    <div class="text-red-500 text-xs mt-2">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="relative w-full mb-6">
-                    <span class="absolute left-3 top-[-6px] bg-white px-1 font-['Roboto'] font-normal text-[10px] text-[#CDCDCD]">Username</span>
-                    <div class="rounded-[3px] border border-[#CDCDCD] bg-white flex flex-row justify-between p-2 mt-4 w-full">
-                        <input class="outline-none flex-grow text-gray-700" type="text" name="username" id="username" value="{{ old('username') }}" required>
-                    </div>
-                    @error('username')
-                    <div class="text-red-500 text-xs mt-2">{{ $message }}</div>
-                    @enderror
-                </div> -->
 
                     <div class="relative w-full mb-6">
                         <span class="absolute left-3 top-[-6px] bg-white px-1 font-['Roboto'] font-normal text-[10px] text-[#CDCDCD]">Email</span>
@@ -87,26 +58,6 @@
                         @enderror
                     </div>
 
-                    <!-- <div class="relative w-full mb-6">
-                    <span class="absolute left-3 top-[-6px] bg-white px-1 font-['Roboto'] font-normal text-[10px] text-[#CDCDCD]">Nomor Telepon</span>
-                    <div class="rounded-[3px] border border-[#CDCDCD] bg-white flex flex-row justify-between p-2 mt-4 w-full">
-                        <input class="outline-none flex-grow text-gray-700" type="text" name="phone_number" id="phone_number" value="{{ old('phone_number') }}">
-                    </div>
-                    @error('phone_number')
-                    <div class="text-red-500 text-xs mt-2">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="relative w-full mb-6">
-                    <span class="absolute left-3 top-[-6px] bg-white px-1 font-['Roboto'] font-normal text-[10px] text-[#CDCDCD]">Tanggal Lahir</span>
-                    <div class="rounded-[3px] border border-[#CDCDCD] bg-white flex flex-row justify-between p-2 mt-4 w-full">
-                        <input class="outline-none flex-grow text-gray-700" type="date" name="date_of_birth" id="date_of_birth" value="{{ old('date_of_birth') }}">
-                    </div>
-                    @error('date_of_birth')
-                    <div class="text-red-500 text-xs mt-2">{{ $message }}</div>
-                    @enderror
-                </div> -->
-
                     <button type="submit" id="registerButton" class="bg-[#CDCDCD] text-white font-['Roboto'] font-bold text-[16px] w-full py-2 rounded-[10px] mb-6">Buat Akun</button>
                 </form>
 
@@ -132,17 +83,13 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const firstNameInput = document.getElementById('first_name');
-            const lastNameInput = document.getElementById('last_name');
-            const usernameInput = document.getElementById('username');
             const emailInput = document.getElementById('email');
             const passwordInput = document.getElementById('password');
-            const phoneNumberInput = document.getElementById('phone_number');
-            const dateOfBirthInput = document.getElementById('date_of_birth');
+            const passwordConfirmationInput = document.getElementById('password_confirmation');
             const registerButton = document.getElementById('registerButton');
 
             function checkInputs() {
-                if (firstNameInput.value.trim() !== '' && usernameInput.value.trim() !== '' && emailInput.value.trim() !== '' && passwordInput.value.trim() !== '') {
+                if (emailInput.value && passwordInput.value && passwordConfirmationInput.value) {
                     registerButton.classList.remove('bg-[#CDCDCD]');
                     registerButton.classList.add('bg-yellow-800');
                 } else {
@@ -151,13 +98,9 @@
                 }
             }
 
-            firstNameInput.addEventListener('input', checkInputs);
-            lastNameInput.addEventListener('input', checkInputs);
-            usernameInput.addEventListener('input', checkInputs);
             emailInput.addEventListener('input', checkInputs);
             passwordInput.addEventListener('input', checkInputs);
-            phoneNumberInput.addEventListener('input', checkInputs);
-            dateOfBirthInput.addEventListener('input', checkInputs);
+            passwordConfirmationInput.addEventListener('input', checkInputs);
         });
     </script>
 

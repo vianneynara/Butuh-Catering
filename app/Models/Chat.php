@@ -6,28 +6,30 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Product extends Model
+class Chat extends Model
 {
     use HasFactory;
 
     public $timestamps = true;
 
-    protected $primaryKey = 'product_id';
+    protected $primaryKey = 'chat_id';
 
     /**
      * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'description',
-        'price',
-        'min_order',
-        'max_order',
-        'image_url',
+        'message',
+        'user_id',
         'shop_id'
     ];
+
+    /**
+     * One to one relation to users.
+     */
+    public function users(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
     /**
      * One to one relation to shops.
