@@ -68,10 +68,8 @@ Route::get('/cart/{cartItem)/quantity', [CartItemController::class, 'getQuantity
 
 route::get('admin/dashboard', [HomeController::class, 'index'])->middleware(['auth', 'admin']);
 
-Route::middleware('auth')->group(function () {
-    Route::post('logout', [AuthController::class, 'logout'])
-        ->name('logout');
-});
+Route::post('logout', [AuthController::class, 'logout'])
+    ->name('logout');
 
 Route::get('/search', [ProductController::class, 'search'])->name('search');
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
