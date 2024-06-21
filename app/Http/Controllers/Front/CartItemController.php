@@ -86,7 +86,7 @@ class CartItemController extends Controller
     {
         $this->checkCartItemOwnership($cartItem);
 
-        return view('cart_item.show', ['cartItem' => $cartItem]);
+        return view('cart_item.show', ['cartItem' => $cartItem->attributesToArray()]);
     }
 
     /**
@@ -96,7 +96,7 @@ class CartItemController extends Controller
     {
         $this->checkCartItemOwnership($cartItem);
 
-        return view('cart_item.edit', ['cartItem' => $cartItem]);
+        return view('cart_item.edit', ['cartItem' => $cartItem->attributesToArray()]);
     }
 
     /**

@@ -83,7 +83,7 @@ class ShopController extends Controller
             ], 404);
         }
 
-        return view('shop.show', ['shop' => $shop]);
+        return view('shop.show', ['shop' => $shop->attributesToArray()]);
     }
 
     /**
@@ -93,7 +93,7 @@ class ShopController extends Controller
     {
         $this->checkShopOwnership($shop);
 
-        return view('shop.edit', ['shop' => $shop]);
+        return view('shop.edit', ['shop' => $shop->attributesToArray()]);
     }
 
     /**
@@ -114,7 +114,7 @@ class ShopController extends Controller
 
         return response()->json([
             'message' => 'Shop updated successfully',
-            'shop' => $shop,
+            'shop' => $shop->attributesToArray(),
         ], 200);
     }
 
@@ -167,7 +167,7 @@ class ShopController extends Controller
 
         return response()->json([
             'message' => 'Shop name updated successfully',
-            'shop' => $shop,
+            'shop' => $shop->attributesToArray(),
         ], 200);
     }
 
@@ -186,7 +186,7 @@ class ShopController extends Controller
 
         return response()->json([
             'message' => 'Shop status updated successfully',
-            'shop' => $shop,
+            'shop' => $shop->attributesToArray(),
         ], 200);
     }
 
@@ -205,7 +205,7 @@ class ShopController extends Controller
 
         return response()->json([
             'message' => 'Shop schedules updated successfully',
-            'shop' => $shop,
+            'shop' => $shop->attributesToArray(),
         ], 200);
     }
 
@@ -224,7 +224,7 @@ class ShopController extends Controller
 
         return response()->json([
             'message' => 'Shop address updated successfully',
-            'shop' => $shop,
+            'shop' => $shop->attributesToArray(),
         ], 200);
     }
 
@@ -277,7 +277,7 @@ class ShopController extends Controller
     {
         return response()->json(
             [
-                'shop' => $shop,
+                'data' => $shop,
             ],
             200,
             ['Content-Type' => 'application/json']
