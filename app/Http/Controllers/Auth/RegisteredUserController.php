@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
@@ -29,24 +28,32 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        // Validasi data
+        $validatedData = $request->validate([
+            'first_name' =>['required'],
+            'last_name' =>['required'],
+            'username' => ['required', 'string'],
+            'email' => ['required', 'string'],
+            'password' => ['required', Rules\Password::defaults()],
         ]);
 
+        // Buat pengguna baru
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'address' => $request->address,
-            'password' => Hash::make($request->password),
+            'first_name' => $validatedData['first_name'],
+            'last_name' => $validatedData['last_name'],
+            'username' => $validatedData['username'],
+            'email' => $validatedData['email'],
+            'password' => Hash::make($validatedData['password']),
         ]);
 
+        // Kirim event Registered
         event(new Registered($user));
 
+        // Login pengguna baru
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        // Redirect ke halaman welcome
+        return redirect()->route('homepage'); // Ubah ke route yang sesuai untuk redirect setelah register
     }
 }
+
